@@ -15,6 +15,8 @@
 - ReactJS
 - Redux (redux, react-redux, redux-devtools-extension)
 - react-router-dom
+- formik
+- yup
 
 
 ## TODO
