@@ -253,7 +253,7 @@
 
 /*----error and success styles -------*/
 .error_text {
-  color: #b94a48;
+  color: var(--red-color)
 }
 .success_text {
   color: var(--green-color);

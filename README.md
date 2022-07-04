@@ -18,6 +18,8 @@
 - formik
 - yup
 - react-responsive
+- axios
+- react-spinners
 
 
 ## TODO

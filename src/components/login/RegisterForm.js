@@ -4,6 +4,8 @@ import { useState } from 'react'
 import * as Yup from 'yup'
 import DateOfBirthSelect from './DateOfBirthSelect'
 import GenderSelect from './GenderSelect'
+import DotLoader from 'react-spinners/DotLoader'
+import axios from 'axios'
 
 function RegisterForm() {
     const userInfos = {
@@ -78,8 +80,34 @@ function RegisterForm() {
     const [genderError, setGenderError] = useState('')
 
     const [error, setError] = useState('')
-    const [success, setSuccess] = useState('')
+    const [success, setSuccess] = useState()
     const [loading, setLoading] = useState(false)
+
+    const registerSubmit = async () => {
+        try {
+            const { data } = await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/register`,
+                {
+                    first_name,
+                    last_name,
+                    email,
+                    password,
+                    bYear,
+                    bMonth,
+                    bDay,
+                    gender,
+                }
+            )
+            setError('')
+            setSuccess(data.message)
+            // setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            setSuccess('')
+            //error message from the backend
+            setError(error.response.data.message)
+        }
+    }
 
     return (
         <div className="blur">
@@ -123,8 +151,8 @@ function RegisterForm() {
                         } else {
                             setDateError('')
                             setGenderError('')
+                            registerSubmit()
                         }
-                        console.log('Cliock')
                     }}
                 >
                     {(formik) => (
@@ -196,6 +224,11 @@ function RegisterForm() {
                                     Sign Up
                                 </button>
                             </div>
+                            <DotLoader color="green" loading={loading} />
+                            {error && <div className="error_text">{error}</div>}
+                            {success && (
+                                <div className="success_text">{success}</div>
+                            )}
                         </Form>
                     )}
                 </Formik>
