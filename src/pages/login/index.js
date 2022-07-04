@@ -1,5 +1,6 @@
 import './style.css'
 import { Formik, Form } from 'formik'
+import * as Yup from 'yup'
 import { Link } from 'react-router-dom'
 import LoginInput from '../../components/inputs/loginInput'
 import { useState } from 'react'
@@ -21,6 +22,17 @@ export default function Login() {
         setLogin({ ...login, [name]: value })
     }
 
+    // Yup validation checks
+    const loginValidation = Yup.object({
+        email: Yup.string()
+            .required('Email address is required')
+            .email('Must be a valid email')
+            .max(64, 'Email cannot have more than 64 characters')
+            .min(6, 'Email cannot have less than 6 characters'),
+
+        password: Yup.string().required('Password is required'),
+    })
+
     return (
         <div className="login">
             <div className="login_wrapper">
@@ -29,13 +41,20 @@ export default function Login() {
                         {/*<img src="../../icons/facebook.svg" alt="" />*/}
                         <div className="login_1_logo">DevSocialMedia</div>
                         <span>
-                            Facebook helps you connect and share with the people
-                            in your life.
+                            DevScoailMedia helps you connect and share with the
+                            people around.
                         </span>
                     </div>
                     <div className="login_2">
                         <div className="login_2_wrap">
-                            <Formik>
+                            <Formik
+                                enableReinitialize
+                                initialValues={{
+                                    email,
+                                    password,
+                                }}
+                                validationSchema={loginValidation}
+                            >
                                 {(formik) => (
                                     <Form>
                                         <LoginInput
@@ -51,6 +70,7 @@ export default function Login() {
                                             name="password"
                                             placeholder={'password'}
                                             onChange={handleLoginChange}
+                                            bottom
                                         />
                                         <button
                                             type="submit"
