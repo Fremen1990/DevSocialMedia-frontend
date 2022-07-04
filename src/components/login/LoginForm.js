@@ -4,13 +4,20 @@ import LoginInput from '../inputs/loginInput'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import * as Yup from 'yup'
+import DotLoader from 'react-spinners/DotLoader'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
 
 const loginInfos = {
     email: '',
     login: '',
 }
 
-function LoginForm(props) {
+function LoginForm({ setVisible }) {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [login, setLogin] = useState(loginInfos)
     const { email, password } = login
 
@@ -29,6 +36,33 @@ function LoginForm(props) {
 
         password: Yup.string().required('Password is required'),
     })
+
+    //Submit login
+
+    //Submit state
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
+
+    const loginSubmit = async () => {
+        try {
+            setLoading(true)
+            const { data } = await axios.post(
+                `${process.env.REACT_APP_BACKEND_URL}/login`,
+                {
+                    email,
+                    password,
+                }
+            )
+            const { message, ...rest } = data
+            dispatch({ type: 'LOGIN', payload: data })
+            Cookies.set('user', JSON.stringify(data))
+            setLoading(false)
+            navigate('/')
+        } catch (error) {
+            setLoading(false)
+            setError(error.response.data.message)
+        }
+    }
     return (
         <div className="login_wrap">
             <div className="login_1">
@@ -48,6 +82,9 @@ function LoginForm(props) {
                             password,
                         }}
                         validationSchema={loginValidation}
+                        onSubmit={() => {
+                            loginSubmit()
+                        }}
                     >
                         {(formik) => (
                             <Form>
@@ -75,8 +112,14 @@ function LoginForm(props) {
                     <Link to="/forgot" className="forgot_password">
                         Forgotten password?
                     </Link>
+                    <DotLoader color="green" loading={loading} />
+
+                    {error && <div className="error_text">{error}</div>}
                     <div className="sign_splitter"></div>
-                    <button className="blue_btn open_signup">
+                    <button
+                        className="blue_btn open_signup"
+                        onClick={() => setVisible(true)}
+                    >
                         Create Account
                     </button>
                 </div>
