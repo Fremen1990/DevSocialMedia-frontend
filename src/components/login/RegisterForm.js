@@ -6,8 +6,14 @@ import DateOfBirthSelect from './DateOfBirthSelect'
 import GenderSelect from './GenderSelect'
 import DotLoader from 'react-spinners/DotLoader'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import Cookies from 'js-cookie'
+import { useNavigate } from 'react-router-dom'
 
 function RegisterForm() {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
     const userInfos = {
         first_name: '',
         last_name: '',
@@ -30,6 +36,15 @@ function RegisterForm() {
         bDay,
         gender,
     } = user
+
+    // Input state
+    const [dateError, setDateError] = useState('')
+    const [genderError, setGenderError] = useState('')
+
+    //Submit state
+    const [error, setError] = useState('')
+    const [success, setSuccess] = useState()
+    const [loading, setLoading] = useState(false)
 
     // Generating new Areas with year month and day
     const yearTemp = new Date().getFullYear()
@@ -76,13 +91,6 @@ function RegisterForm() {
             .max(64, 'Password cannot be more than 64 characters'),
     })
 
-    const [dateError, setDateError] = useState('')
-    const [genderError, setGenderError] = useState('')
-
-    const [error, setError] = useState('')
-    const [success, setSuccess] = useState()
-    const [loading, setLoading] = useState(false)
-
     const registerSubmit = async () => {
         try {
             const { data } = await axios.post(
@@ -101,6 +109,13 @@ function RegisterForm() {
             setError('')
             setSuccess(data.message)
             // setLoading(false)
+            const { message, ...rest } = data
+
+            setTimeout(() => {
+                dispatch({ type: 'LOGIN', payload: rest })
+                Cookies.set('user', JSON.stringify(rest))
+                navigate('/')
+            }, 2000)
         } catch (error) {
             setLoading(false)
             setSuccess('')

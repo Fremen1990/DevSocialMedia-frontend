@@ -20,6 +20,7 @@
 - react-responsive
 - axios
 - react-spinners
+- js-cookie
 
 
 ## TODO
