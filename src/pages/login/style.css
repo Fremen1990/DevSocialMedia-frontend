@@ -81,8 +81,8 @@
 }
 /*----- login ------*/
 
-/*------- Register ---------*/
 
+/*-----Register---------*/
 .register {
   position: absolute;
   top: 50%;
@@ -189,6 +189,7 @@
   justify-content: center;
   margin: 20px 0 10px 0;
 }
+/*-----Register---------*/
 
 
 
@@ -234,24 +235,56 @@
   margin: 10px auto;
   max-width: 900px;
 }
-
 /*----Footer------*/
 
 
-/*----Media queries--------------*/
+/*----date of birth  and gender errors-----*/
+.reg_grid .input_error {
+  width: 300px;
+  position: absolute;
+  top: 70px;
+}
+.input_error_select_large {
+  left: -97%;
+  top: 15px !important;
+}
+/*----date of birth and gender errors-----*/
 
-@media(min-width: 539px){
-  .login_footer_wrap{
+
+/*----error and success styles -------*/
+.error_text {
+  color: #b94a48;
+}
+.success_text {
+  color: var(--green-color);
+}
+/*----error and success styles -------*/
+
+
+/*----Media queries--------------*/
+@media (min-width: 539px) {
+  .login_footer_wrap {
     max-width: 520px;
   }
+  .register {
+    width: 400px;
+  }
+  .reg_line {
+    flex-direction: row;
+  }
+  .reg_grid select,
+  .reg_grid label {
+    width: 110px;
+  }
+  .reg_grid .input_error {
+    width: 350px;
+  }
 }
-
-@media(min-width: 650px){
-  .login_footer_wrap{
+@media (min-width: 650px) {
+  .login_footer_wrap {
     max-width: 650px;
   }
 }
-
 @media (min-width: 850px) {
   .login_wrap {
     display: flex;
@@ -278,8 +311,7 @@
   .input_wrap {
     width: 360px !important;
   }
-
-  .login_footer_wrap{
+  .login_footer_wrap {
     max-width: 900px;
   }
 }

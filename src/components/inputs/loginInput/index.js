@@ -8,7 +8,6 @@ function LoginInput({ placeholder, bottom, ...props }) {
     const desktopView = useMediaQuery({
         query: '(min-width:850px',
     })
-    console.log(desktopView)
     return (
         <div className="input_wrap">
             {meta.touched && meta.error && !bottom && (

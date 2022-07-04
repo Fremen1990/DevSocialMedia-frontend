@@ -14,10 +14,7 @@ function LoginForm(props) {
     const [login, setLogin] = useState(loginInfos)
     const { email, password } = login
 
-    console.log(login)
-
     const handleLoginChange = (e) => {
-        console.log(e.target.value)
         const { name, value } = e.target
         setLogin({ ...login, [name]: value })
     }
