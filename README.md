@@ -17,6 +17,7 @@
 - react-router-dom
 - formik
 - yup
+- react-responsive
 
 
 ## TODO

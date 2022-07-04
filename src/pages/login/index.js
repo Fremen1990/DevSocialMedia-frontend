@@ -58,7 +58,7 @@ export default function Login() {
                                 {(formik) => (
                                     <Form>
                                         <LoginInput
-                                            type="text"
+                                            type="email"
                                             name="email"
                                             placeholder={
                                                 'Email address or phone number'
@@ -82,7 +82,7 @@ export default function Login() {
                                 )}
                             </Formik>
                             <Link to="/forgot" className="forgot_password">
-                                Forgotten password ?
+                                Forgotten password?
                             </Link>
                             <div className="sign_splitter"></div>
                             <button className="blue_btn open_signup">
@@ -90,8 +90,8 @@ export default function Login() {
                             </button>
                         </div>
                         <Link to="/" className="sign_extra">
-                            <b>Create a Page</b>
-                            for a celebrity, brand or business.
+                            <b>Create a Page</b> for a celebrity, brand or
+                            business.
                         </Link>
                     </div>
                 </div>

@@ -1,22 +1,36 @@
 import React from 'react'
 import './style.css'
+import { useMediaQuery } from 'react-responsive'
 import { ErrorMessage, useField } from 'formik'
 
 function LoginInput({ placeholder, bottom, ...props }) {
     const [field, meta] = useField(props)
-
+    const desktopView = useMediaQuery({
+        query: '(min-width:850px',
+    })
+    console.log(desktopView)
     return (
         <div className="input_wrap">
             {meta.touched && meta.error && !bottom && (
                 <div
-                    className="input_error"
+                    className={
+                        desktopView
+                            ? 'input_error input_error_desktop'
+                            : 'input_error'
+                    }
                     style={{ transform: 'translate(3px' }}
                 >
                     {meta.touched && meta.error && (
                         <ErrorMessage name={field.name} />
                     )}
                     {meta.touched && meta.error && (
-                        <div className="error_arrow_top"></div>
+                        <div
+                            className={
+                                desktopView
+                                    ? 'error_arrow_left'
+                                    : 'error_arrow_top'
+                            }
+                        ></div>
                     )}
                 </div>
             )}
@@ -33,7 +47,11 @@ function LoginInput({ placeholder, bottom, ...props }) {
             />
             {meta.touched && meta.error && bottom && (
                 <div
-                    className="input_error"
+                    className={
+                        desktopView
+                            ? 'input_error input_error_desktop'
+                            : 'input_error'
+                    }
                     style={{ transform: 'translate(3px' }}
                 >
                     {meta.touched && meta.error && (
@@ -41,7 +59,13 @@ function LoginInput({ placeholder, bottom, ...props }) {
                     )}
 
                     {meta.touched && meta.error && (
-                        <div className="error_arrow_bottom"></div>
+                        <div
+                            className={
+                                desktopView
+                                    ? 'error_arrow_left'
+                                    : 'error_arrow_bottom'
+                            }
+                        ></div>
                     )}
                 </div>
             )}
@@ -49,7 +73,9 @@ function LoginInput({ placeholder, bottom, ...props }) {
             {meta.touched && meta.error && (
                 <i
                     className="error_icon"
-                    style={{ top: `${!bottom && '63%'}` }}
+                    style={{
+                        top: `${!bottom && !desktopView ? '63%' : '15px'}`,
+                    }}
                 ></i>
             )}
         </div>
