@@ -90,7 +90,9 @@ export default function Header() {
                     ref={allMenu}
                 >
                     <div onClick={() => setShowAllMenu((prev) => !prev)}>
-                        <Menu />
+                        <div style={{ transform: 'translateY(2px)' }}>
+                            <Menu />
+                        </div>
                     </div>
                     {showAllMenu && <AllMenu setShowAllMenu={setShowAllMenu} />}
                 </div>
@@ -108,7 +110,9 @@ export default function Header() {
                     ref={usermenu}
                 >
                     <div onClick={() => setShowUserMenu((prev) => !prev)}>
-                        <ArrowDown />
+                        <div style={{ transform: 'translateY(2px)' }}>
+                            <ArrowDown />
+                        </div>
                     </div>
 
                     {showUserMenu && <UserMenu user={user} />}
