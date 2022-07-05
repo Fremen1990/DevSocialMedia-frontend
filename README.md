@@ -21,10 +21,14 @@
 - axios
 - react-spinners
 - js-cookie
+- protected-route
+- responsive-web-design (RWD)
 
 
 ## TODO
 - [ ] Prepare README
+- [ ] Refactoring CSS to SCSS and minimizing number of styles
 - [ ] Refactoring Frontend to TypeScript
-- [ ] Unit Testing
+- [ ] Redux black box testing
+- [ ] Snapshot testing with React-Testing-Library
 - [ ] Testing coverage report
