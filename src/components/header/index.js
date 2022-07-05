@@ -18,15 +18,19 @@ import SearchMenu from './SearchMenu'
 import { useRef, useState } from 'react'
 import AllMenu from './AllMenu'
 import useClickOutside from '../../helpers/clickOutside'
+import UserMenu from './userMenu'
 
-function Header() {
+export default function Header() {
     const { user } = useSelector((user) => ({ ...user }))
     const color = '#65676b'
 
     const [showSearchMenu, setShowSearchMenu] = useState(false)
     const [showAllMenu, setShowAllMenu] = useState(false)
+    const [showUserMenu, setShowUserMenu] = useState(false)
     const allMenu = useRef(null)
+    const usermenu = useRef(null)
     useClickOutside(allMenu, () => setShowAllMenu(false))
+    useClickOutside(usermenu, () => setShowUserMenu(false))
 
     return (
         <header>
@@ -80,11 +84,14 @@ function Header() {
                     <span>{user?.first_name}</span>
                 </Link>
                 <div
-                    className="circle_icon hover1"
-                    onClick={() => setShowAllMenu((prev) => !prev)}
+                    className={`circle_icon hover1 ${
+                        showAllMenu && 'active_header'
+                    }`}
                     ref={allMenu}
                 >
-                    <Menu />
+                    <div onClick={() => setShowAllMenu((prev) => !prev)}>
+                        <Menu />
+                    </div>
                     {showAllMenu && <AllMenu setShowAllMenu={setShowAllMenu} />}
                 </div>
                 <div className="circle_icon hover1">
@@ -94,12 +101,19 @@ function Header() {
                     <Notifications />
                     <div className="right_notification">5</div>
                 </div>
-                <div className="circle_icon hover1">
-                    <ArrowDown />
+                <div
+                    className={`circle_icon hover1 ${
+                        showUserMenu && 'active_header'
+                    }`}
+                    ref={usermenu}
+                >
+                    <div onClick={() => setShowUserMenu((prev) => !prev)}>
+                        <ArrowDown />
+                    </div>
+
+                    {showUserMenu && <UserMenu user={user} />}
                 </div>
             </div>
         </header>
     )
 }
-
-export default Header
