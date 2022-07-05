@@ -21,6 +21,8 @@
 - axios
 - react-spinners
 - js-cookie
+- protected-route
+- responsive-web-design (RWD)
 
 
 ## TODO
