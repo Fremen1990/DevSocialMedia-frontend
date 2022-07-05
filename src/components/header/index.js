@@ -15,13 +15,18 @@ import {
 } from '../../svg'
 import { useSelector } from 'react-redux'
 import SearchMenu from './SearchMenu'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import AllMenu from './AllMenu'
+import useClickOutside from '../../helpers/clickOutside'
 
 function Header() {
     const { user } = useSelector((user) => ({ ...user }))
     const color = '#65676b'
 
     const [showSearchMenu, setShowSearchMenu] = useState(false)
+    const [showAllMenu, setShowAllMenu] = useState(false)
+    const allMenu = useRef(null)
+    useClickOutside(allMenu, () => setShowAllMenu(false))
 
     return (
         <header>
@@ -74,8 +79,13 @@ function Header() {
                     <img src={user?.picture} alt="" />
                     <span>{user?.first_name}</span>
                 </Link>
-                <div className="circle_icon hover1">
+                <div
+                    className="circle_icon hover1"
+                    onClick={() => setShowAllMenu((prev) => !prev)}
+                    ref={allMenu}
+                >
                     <Menu />
+                    {showAllMenu && <AllMenu setShowAllMenu={setShowAllMenu} />}
                 </div>
                 <div className="circle_icon hover1">
                     <Messenger />

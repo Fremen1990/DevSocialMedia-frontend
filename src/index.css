@@ -79,8 +79,13 @@ a {
 }
 /* ------ Hovers--------*/
 
-.card {
-    width: 500px;
-    height: 500px;
-    background: red;
+/*--------- Scrollbar --------------*/
+.scrollbar::-webkit-scrollbar {
+    width: 8px;
 }
+.scrollbar::-webkit-scrollbar-thumb {
+    /*background: #aeaeafa1;*/
+    background: var(--green-logo-color);
+    border-radius: 5px;
+}
+/*--------- Scrollbar --------------*/
