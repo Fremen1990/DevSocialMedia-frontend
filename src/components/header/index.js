@@ -15,16 +15,15 @@ import {
 } from '../../svg'
 import { useSelector } from 'react-redux'
 
-function Header(props) {
+function Header() {
     const { user } = useSelector((user) => ({ ...user }))
-    console.log(user)
 
     const color = '#65676b'
 
     return (
         <header>
             <div className="header_left">
-                <Link to="/" classname="header_logo">
+                <Link to="/" className="header_logo">
                     <div className="circle">
                         <LogoD />
                     </div>

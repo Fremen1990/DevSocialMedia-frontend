@@ -78,3 +78,9 @@ a {
     background: var(--bg-third);
 }
 /* ------ Hovers--------*/
+
+.card {
+    width: 500px;
+    height: 500px;
+    background: red;
+}
