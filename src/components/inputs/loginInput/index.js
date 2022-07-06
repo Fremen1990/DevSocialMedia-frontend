@@ -3,17 +3,24 @@ import './style.css'
 import { useMediaQuery } from 'react-responsive'
 import { ErrorMessage, useField } from 'formik'
 
-function LoginInput({ placeholder, bottom, ...props }) {
+export default function LoginInput({ placeholder, bottom, ...props }) {
     const [field, meta] = useField(props)
     const desktopView = useMediaQuery({
         query: '(min-width:850px',
     })
+
+    const view1050 = useMediaQuery({
+        query: '(max-width:1050px',
+    })
+
     return (
         <div className="input_wrap">
             {meta.touched && meta.error && !bottom && (
                 <div
                     className={
-                        desktopView
+                        desktopView && view1050 && field.name === 'password'
+                            ? 'input_error input_error_desktop err_res_password'
+                            : desktopView
                             ? 'input_error input_error_desktop'
                             : 'input_error'
                     }
@@ -47,7 +54,11 @@ function LoginInput({ placeholder, bottom, ...props }) {
             {meta.touched && meta.error && bottom && (
                 <div
                     className={
-                        desktopView
+                        desktopView &&
+                        view1050 &&
+                        field.name === 'conf_password'
+                            ? 'input_error conf_password_error'
+                            : desktopView
                             ? 'input_error input_error_desktop'
                             : 'input_error'
                     }
@@ -80,7 +91,3 @@ function LoginInput({ placeholder, bottom, ...props }) {
         </div>
     )
 }
-
-export default LoginInput
-
-//TODO 33. Login and Register page part 3 (Yup)  8:00

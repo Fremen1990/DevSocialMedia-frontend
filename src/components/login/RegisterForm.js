@@ -238,7 +238,7 @@ function RegisterForm({ setVisible }) {
                                 time.
                             </div>
                             <div className="reg_btn_wrapper">
-                                <button className="blue_btn open_signup">
+                                <button className="green_btn open_signup">
                                     Sign Up
                                 </button>
                             </div>

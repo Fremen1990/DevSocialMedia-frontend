@@ -1,0 +1,14 @@
+.devSocialLogo {
+    /*  my own */
+    /*display: flex;*/
+    padding: 5px 0 5px 0;
+    height: 100%;
+    width: 100%;
+    font-size: 30px;
+    color: var(--green-color);
+    font-weight: 800;
+    /*text-shadow: -1px 9px 23px rgba(66, 68, 90, 1);*/
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    /*letter-spacing: 0.5px;*/
+    white-space: nowrap;
+}

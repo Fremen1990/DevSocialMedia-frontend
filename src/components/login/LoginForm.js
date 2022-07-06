@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
+import DevSocialMediaLogo from '../logo'
 
 const loginInfos = {
     email: '',
@@ -67,11 +68,9 @@ function LoginForm({ setVisible }) {
         <div className="login_wrap">
             <div className="login_1">
                 {/*<img src="../../icons/facebook.svg" alt="" />*/}
-                <div className="login_1_logo">DevSocialMedia</div>
-                <span>
-                    DevScoailMedia helps you connect and share with the people
-                    around.
-                </span>
+                {/*<div className="login_1_logo">DevSocialMedia</div>*/}
+                <DevSocialMediaLogo />
+                <span>Helps you connect and share with the people around.</span>
             </div>
             <div className="login_2">
                 <div className="login_2_wrap">
@@ -103,13 +102,13 @@ function LoginForm({ setVisible }) {
                                     onChange={handleLoginChange}
                                     bottom
                                 />
-                                <button type="submit" className="blue_btn">
+                                <button type="submit" className="green_btn">
                                     Log In
                                 </button>
                             </Form>
                         )}
                     </Formik>
-                    <Link to="/forgot" className="forgot_password">
+                    <Link to="/reset" className="forgot_password">
                         Forgotten password?
                     </Link>
                     <DotLoader color="green" loading={loading} />
@@ -117,7 +116,7 @@ function LoginForm({ setVisible }) {
                     {error && <div className="error_text">{error}</div>}
                     <div className="sign_splitter"></div>
                     <button
-                        className="blue_btn open_signup"
+                        className="green_btn open_signup"
                         onClick={() => setVisible(true)}
                     >
                         Create Account

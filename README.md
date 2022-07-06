@@ -1,6 +1,6 @@
 # DevSocialMedia-frontend
 
-
+## Project currently in progress
 
 ### README plan:
 - Describe idea and what project will do
@@ -26,9 +26,11 @@
 
 
 ## TODO
+- [ ] Refactor separated functional components as "LOGIN BUTTON" "LOGOUT BUTTON" and LOGO
 - [ ] Prepare README
 - [ ] Refactoring CSS to SCSS and minimizing number of styles
 - [ ] Refactoring Frontend to TypeScript
 - [ ] Redux black box testing
 - [ ] Snapshot testing with React-Testing-Library
 - [ ] Testing coverage report
+- [ ] Add Chat messenger with SocketIO
