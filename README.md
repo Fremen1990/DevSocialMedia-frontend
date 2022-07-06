@@ -21,6 +21,7 @@
 - axios
 - react-spinners
 - js-cookie
+- emoji-picker-react
 - protected-routes(first security layer)
 - responsive-web-design (RWD)
 
