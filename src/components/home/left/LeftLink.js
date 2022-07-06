@@ -1,7 +1,6 @@
 import './style.css'
 
 export default function LeftLink({ img, text, notification }) {
-    console.log('IMAGE', img)
     return (
         <div className="left_link hover1">
             <img src={`/left/${img}.png`} alt="Left link image" />

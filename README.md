@@ -21,7 +21,7 @@
 - axios
 - react-spinners
 - js-cookie
-- protected-route
+- protected-routes(first security layer)
 - responsive-web-design (RWD)
 
 

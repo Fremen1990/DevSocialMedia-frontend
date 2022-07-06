@@ -1,7 +1,7 @@
 import './style.css'
 import Story from './Story'
-import { ArrowRight, Plus } from '../../svg'
-import { stories } from '../../data/home'
+import { ArrowRight, Plus } from '../../../svg'
+import { stories } from '../../../data/home'
 import { useMediaQuery } from 'react-responsive'
 export default function Stories() {
     //checking width for RWD
