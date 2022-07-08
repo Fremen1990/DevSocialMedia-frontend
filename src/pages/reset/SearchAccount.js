@@ -53,6 +53,7 @@ export default function SearchAccount({
                 validationSchema={validateEmail}
                 onSubmit={() => handleSearch()}
             >
+                {/* eslint-disable-next-line no-unused-vars */}
                 {(formik) => (
                     <Form>
                         <LoginInput

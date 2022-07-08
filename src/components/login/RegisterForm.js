@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
 
-function RegisterForm({ setVisible }) {
+export default function RegisterForm({ setVisible }) {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -109,6 +109,7 @@ function RegisterForm({ setVisible }) {
             setError('')
             setSuccess(data.message)
             // setLoading(false)
+            // eslint-disable-next-line no-unused-vars
             const { message, ...rest } = data
 
             setTimeout(() => {
@@ -133,7 +134,7 @@ function RegisterForm({ setVisible }) {
                         onClick={() => setVisible(false)}
                     ></i>
                     <span>Sign Up</span>
-                    <span>It's quick and easy</span>
+                    <span>It is quick and easy</span>
                 </div>
                 <Formik
                     enableReinitialize
@@ -173,6 +174,7 @@ function RegisterForm({ setVisible }) {
                         }
                     }}
                 >
+                    {/* eslint-disable-next-line no-unused-vars */}
                     {(formik) => (
                         <Form className="register_form">
                             <div className="reg_line">
@@ -238,11 +240,15 @@ function RegisterForm({ setVisible }) {
                                 time.
                             </div>
                             <div className="reg_btn_wrapper">
-                                <button className="green_btn open_signup">
+                                <button className="blue_btn open_signup">
                                     Sign Up
                                 </button>
                             </div>
-                            <DotLoader color="green" loading={loading} />
+                            <DotLoader
+                                color="#1876f2"
+                                loading={loading}
+                                size={30}
+                            />
                             {error && <div className="error_text">{error}</div>}
                             {success && (
                                 <div className="success_text">{success}</div>
@@ -254,5 +260,3 @@ function RegisterForm({ setVisible }) {
         </div>
     )
 }
-
-export default RegisterForm

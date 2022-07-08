@@ -457,6 +457,7 @@
     display: inline-block;
     filter: invert(40%);
 }
+
 .exit_icon {
     background-image: url('../../../public/icons/icons6.png');
     background-position: -126px -71px;
@@ -466,7 +467,14 @@
     background-repeat: no-repeat;
     display: inline-block;
     filter: invert(40%);
+    cursor: pointer;
+    transition: 0.5s;
 }
+
+.exit_icon:hover {
+    transform: rotate(360deg);
+}
+
 .edit_icon {
     background-image: url('../../../public/icons/icons18.png');
     background-position: -34px -109px;

@@ -60,6 +60,7 @@ export default function ChangePassword({
                 validationSchema={validatePassword}
                 onSubmit={() => changePassword()}
             >
+                {/* eslint-disable-next-line no-unused-vars */}
                 {(formik) => (
                     <Form>
                         <LoginInput

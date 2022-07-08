@@ -27,6 +27,7 @@
 
 
 ## TODO
+- [ ] Configure Husky pre hooks with eslint prettier and test before commit
 - [ ] Refactor separated functional components as "LOGIN BUTTON" "LOGOUT BUTTON" and LOGO
 - [ ] Prepare README
 - [ ] Refactoring CSS to SCSS and minimizing number of styles

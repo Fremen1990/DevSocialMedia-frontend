@@ -25,7 +25,6 @@ function SearchMenu({ color, setShowSearchMenu }) {
                         className="circle hover1"
                         onClick={() => setShowSearchMenu(false)}
                     >
-                        >
                         <Return color={color} />
                     </div>
                 </div>

@@ -93,18 +93,34 @@ a {
 .hover1:hover {
     background: var(--bg-secondary);
 }
+
 .hover2:hover {
     background: var(--bg-third);
 }
+
 .hover3:hover {
     background: #d4d6da3a;
 }
+
+.hover_green:hover {
+    background: var(--green-logo-color);
+}
+
+.hover_red:hover {
+    background: var(--notification-red);
+}
+
+.transit {
+    transition: 0.5s;
+}
+
 /* ------ Hovers--------*/
 
 /*--------- Scrollbar --------------*/
 .scrollbar::-webkit-scrollbar {
     width: 8px;
 }
+
 .scrollbar::-webkit-scrollbar-thumb {
     /*background: #aeaeafa1;*/
     background: var(--green-logo-color);

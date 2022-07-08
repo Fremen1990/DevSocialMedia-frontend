@@ -1,14 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Formik } from 'formik'
 import LoginInput from '../inputs/loginInput'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import DotLoader from 'react-spinners/DotLoader'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
-import { useNavigate } from 'react-router-dom'
 import DevSocialMediaLogo from '../logo'
 
 const loginInfos = {
@@ -54,6 +52,7 @@ function LoginForm({ setVisible }) {
                     password,
                 }
             )
+            // eslint-disable-next-line no-unused-vars
             const { message, ...rest } = data
             dispatch({ type: 'LOGIN', payload: data })
             Cookies.set('user', JSON.stringify(data))
@@ -85,6 +84,7 @@ function LoginForm({ setVisible }) {
                             loginSubmit()
                         }}
                     >
+                        {/* eslint-disable-next-line no-unused-vars */}
                         {(formik) => (
                             <Form>
                                 <LoginInput

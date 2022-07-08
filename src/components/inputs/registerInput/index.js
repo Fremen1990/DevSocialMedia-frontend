@@ -3,13 +3,16 @@ import './style.css'
 import { useMediaQuery } from 'react-responsive'
 import { ErrorMessage, useField } from 'formik'
 
+// eslint-disable-next-line no-unused-vars
 function RegisterInput({ placeholder, bottom, ...props }) {
     const [field, meta] = useField(props)
 
-    //Responsivness with 'react-responsive
+    //Responsiveness with 'react-responsive
     const view1 = useMediaQuery({
         query: '(min-width:539px',
     })
+
+    // eslint-disable-next-line no-unused-vars
     const view2 = useMediaQuery({
         query: '(min-width:850px',
     })

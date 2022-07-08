@@ -55,6 +55,7 @@ export default function CodeVerification({
                     verifyCode()
                 }}
             >
+                {/* eslint-disable-next-line no-unused-vars */}
                 {(formik) => (
                     <Form>
                         <LoginInput

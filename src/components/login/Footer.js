@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Footer(props) {
+function Footer() {
     return (
         <footer className="login_footer">
             <div className="login_footer_wrap">
