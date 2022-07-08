@@ -7,14 +7,21 @@ import Stories from '../../components/home/stories'
 import CreatePost from '../../components/createPost'
 import SendVerification from '../../components/home/sendVerification'
 import Post from '../../components/post'
+import { useEffect, useRef, useState } from 'react'
 
 export default function Home({ setCreatePostVisible, posts }) {
     const { user } = useSelector((state) => ({ ...state }))
+    const [height, setHeight] = useState('')
+    const middle = useRef(null)
+
+    useEffect(() => {
+        setHeight(middle.current.clientHeight)
+    }, [])
     return (
-        <div className="home">
+        <div className="home" style={{ height: `${height + 200}px` }}>
             <Header />
             <LeftHome user={user} />
-            <div className="home_middle">
+            <div className="home_middle" ref={middle}>
                 <Stories />
                 {user.verified === false && <SendVerification user={user} />}
                 <CreatePost
@@ -23,7 +30,7 @@ export default function Home({ setCreatePostVisible, posts }) {
                 />
 
                 {posts.map((post) => (
-                    <Post key={post._id} post={post} />
+                    <Post key={post._id} post={post} user={user} />
                 ))}
             </div>
             <RightHome user={user} />

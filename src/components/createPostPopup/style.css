@@ -407,6 +407,7 @@
     animation: anim 0.5s;
     border-radius: 5px;
     padding: 3rem;
+    border: #b94a48 solid 3px;
 }
 .postError_error {
     width: 75%;
