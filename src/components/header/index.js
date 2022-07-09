@@ -12,6 +12,7 @@ import {
     Messenger,
     ArrowDown,
     Notifications,
+    Home,
 } from '../../svg'
 import { useSelector } from 'react-redux'
 import SearchMenu from './SearchMenu'
@@ -20,7 +21,7 @@ import AllMenu from './AllMenu'
 import useClickOutside from '../../helpers/clickOutside'
 import UserMenu from './userMenu'
 
-export default function Header() {
+export default function Header({ page }) {
     const { user } = useSelector((user) => ({ ...user }))
     const color = '#65676b'
 
@@ -60,8 +61,15 @@ export default function Header() {
                 />
             )}
             <div className="header_middle">
-                <Link to="/" className="middle_icon active">
-                    <HomeActive color="green" />
+                <Link
+                    to="/"
+                    className={`middle_icon ${page === 'home' ? 'active' : ''}`}
+                >
+                    {page === 'home' ? (
+                        <HomeActive color="green" />
+                    ) : (
+                        <Home color={color} />
+                    )}
                 </Link>
                 <Link to="/" className="middle_icon hover1 ">
                     <Friends color={color} />
@@ -79,7 +87,12 @@ export default function Header() {
             </div>
 
             <div className="header_right">
-                <Link to="/profile" className="profile_link hover1">
+                <Link
+                    to="/profile"
+                    className={`profile_link hover1 ${
+                        page === 'profile' ? 'active_link' : ''
+                    }`}
+                >
                     <img src={user?.picture} alt="" />
                     <span>{user?.first_name}</span>
                 </Link>

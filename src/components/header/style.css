@@ -81,7 +81,7 @@ circle {
 }
 
 .active {
-    border-bottom: 3px solid var(--green-logo-color);
+    border-bottom: 5px solid var(--green-logo-color);
     border-radius: 0;
     height: 56px;
     transform: translateX(0);
@@ -578,12 +578,14 @@ circle {
 /*---------------responsiveness--------------*/
 
 /*-------------  Active Header --------------*/
-/*.active_header {*/
-/*    background: var(--blue-color);*/
-/*}*/
-
+.active_header {
+    background: var(--light-blue-color);
+}
 .active_header svg {
-    /*fill: var(--blue-color);*/
     fill: var(--green-logo-color);
+}
+.active_link {
+    background: var(--light-blue-color);
+    color: var(--green-logo-color);
 }
 /*-------------  Active Header --------------*/
