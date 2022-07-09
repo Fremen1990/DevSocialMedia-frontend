@@ -9,64 +9,21 @@ import Reset from './pages/reset'
 import CreatePostPopup from './components/createPostPopup'
 import { useSelector } from 'react-redux'
 import { useEffect, useReducer, useState } from 'react'
-import axios from 'axios'
-
-function reducer(state, action) {
-    switch (action.type) {
-        case 'POSTS_REQUEST':
-            return { ...state, loading: true, error: '' }
-        case 'POSTS_SUCCESS':
-            return {
-                ...state,
-                loading: false,
-                posts: action.payload,
-                error: '',
-            }
-        case 'POSTS_ERROR':
-            return {
-                ...state,
-                loading: false,
-                error: action.payload,
-            }
-        default:
-            return state
-    }
-}
+import { postsReducer } from './functions/reducers'
+import { getAllPosts } from './apiCalls'
 
 function App() {
     const [createPostVisible, setCreatePostVisible] = useState(false)
     const { user } = useSelector((state) => ({ ...state }))
     // eslint-disable-next-line no-unused-vars
-    const [{ loading, error, posts }, dispatch] = useReducer(reducer, {
+    const [{ loading, error, posts }, dispatch] = useReducer(postsReducer, {
         loading: false,
         posts: [],
         error: '',
     })
 
-    const getAllPosts = async () => {
-        try {
-            dispatch({ type: 'POSTS_REQUEST' })
-            const { data } = await axios.get(
-                `${process.env.REACT_APP_BACKEND_URL}/getAllPosts`,
-                {
-                    header: {
-                        Authorization: `Bearer ${user.token}`,
-                    },
-                }
-            )
-            dispatch({
-                type: 'POSTS_SUCCESS',
-                payload: data,
-            })
-        } catch (error) {
-            dispatch({
-                type: 'POSTS_ERROR',
-                payload: error.data.response.message,
-            })
-        }
-    }
     useEffect(() => {
-        getAllPosts()
+        getAllPosts(user, dispatch)
     }, [])
 
     return (
@@ -90,6 +47,11 @@ function App() {
                         exact
                     />
                     <Route path="/profile" element={<Profile />} exact />
+                    <Route
+                        path="/profile/:username"
+                        element={<Profile />}
+                        exact
+                    />
                     <Route
                         path="/activate/:token"
                         element={<Activate />}
