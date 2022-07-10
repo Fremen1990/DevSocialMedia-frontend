@@ -31,6 +31,7 @@ a {
     --green-logo-color: #0d843c;
     --red-color: #b94a48;
     --light-blue-color: #e7f3ff;
+    --light-green-color: #b3cdaf;
     --border-color: #ccced2;
     --shadow-1: rgba(0, 0, 0, 0.2);
     --shadow-2: rgba(0, 0, 0, 0.1);
@@ -57,11 +58,10 @@ a {
     gap: 6px;
     cursor: pointer;
 }
-
-.gray_btn {
+.light_blue_btn {
     border: none;
     outline: none;
-    background: var(--dark-bg-third);
+    background: var(--light-green-color);
     padding: 8.5px 12px;
     border-radius: 7px;
     font-family: inherit;
@@ -73,6 +73,44 @@ a {
     justify-content: center;
     gap: 6px;
     cursor: pointer;
+}
+
+.light_green_btn {
+    border: none;
+    outline: none;
+    background: var(--light-green-color);
+    padding: 8.5px 12px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.gray_btn {
+    border: none;
+    outline: none;
+    background: var(--bg-third);
+    padding: 8.5px 12px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+}
+.green_btn,
+.gray_btn {
+    transform: translateY(-5px);
 }
 
 /*----Buttons----*/

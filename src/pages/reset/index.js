@@ -27,7 +27,6 @@ export default function Reset() {
         dispatch({ type: 'LOGOUT' })
         navigate('/login')
     }
-    console.log(userInfos)
     return (
         <div className="reset">
             <div className="reset_header">

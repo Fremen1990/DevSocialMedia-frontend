@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { ArrowDown1 } from '../../../svg'
 import { useState } from 'react'
 import Shortcut from './Shortcut'
+import SmallFooter from '../../footers/SmallFooter'
 
 export default function LeftHome({ user }) {
     const [visible, setVisible] = useState(false)
@@ -75,20 +76,7 @@ export default function LeftHome({ user }) {
                     name="Instagram Channel"
                 />
             </div>
-            <div
-                className={`fb_copyright ${visible && 'relative_fb_copyright'}`}
-            >
-                <Link to="/">Privacy</Link> <span>. </span>
-                <Link to="/">Terms</Link> <span>. </span>
-                <Link to="/">Advertising</Link> <span>. </span>
-                <Link to="/">
-                    Ad Choices <i className="ad_choices_icon"></i>{' '}
-                </Link>{' '}
-                <span>. </span>
-                <Link to="/">Cookies </Link> <span>. </span>
-                <Link to="/">More </Link> <span>. </span> <br />
-                DevThomas © 2022
-            </div>
+            <SmallFooter visible={visible} />
         </div>
     )
 }

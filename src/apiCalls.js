@@ -1,6 +1,16 @@
 import axios from 'axios'
 
-export const getProfile = async (userName, user, dispatch, navigate) => {
+export const getProfile = async (
+    userName,
+    user,
+    dispatch,
+    navigate,
+    token,
+    setPhotos
+) => {
+    const path = `${user.username}/*`
+    const max = 30
+    const sort = 'desc'
     try {
         dispatch({ type: 'PROFILE_REQUEST' })
         const { data } = await axios.get(
@@ -15,6 +25,22 @@ export const getProfile = async (userName, user, dispatch, navigate) => {
         if (data.ok === false) {
             navigate('/profileNotFound')
         } else {
+            try {
+                const images = await axios.post(
+                    `${process.env.REACT_APP_BACKEND_URL}/listImages`,
+                    { path, sort, max },
+
+                    {
+                        header: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                )
+                setPhotos(images.data)
+            } catch (error) {
+                console.log(error)
+            }
+
             dispatch({ type: 'PROFILE_SUCCESS', payload: data })
         }
     } catch (error) {

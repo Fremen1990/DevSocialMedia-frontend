@@ -24,7 +24,6 @@ export default function SendEmail({
             setError(error.response.data.message)
         }
     }
-    console.log('USER INFOS', userInfos)
     return (
         <div className="reset_form dynamic_height">
             <div className="reset_form_header">Reset Your Password</div>

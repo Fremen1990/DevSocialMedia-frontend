@@ -5,8 +5,17 @@ import { profileReducer } from '../../functions/reducers'
 import { useEffect, useReducer, useState } from 'react'
 import { getProfile } from '../../apiCalls'
 import Header from '../../components/header'
+import Cover from './Cover'
+import ProfilePictureInfos from './ProfilePictureInfos'
+import ProfileMenu from './ProfileMenu'
+import PplYouMayKnow from './PplYouMayKnow'
+import CreatePost from '../../components/createPost'
+import GridPosts from './GridPosts'
+import Post from '../../components/post'
+import Photos from './Photos'
+import Friends from './Friends'
 
-export default function Profile() {
+export default function Profile({ setCreatePostVisible }) {
     const navigate = useNavigate()
     //username from http query
     const { username } = useParams()
@@ -14,9 +23,10 @@ export default function Profile() {
     const { user } = useSelector((state) => ({ ...state }))
     //check which user is available
     const userName = username === undefined ? user.username : username
+    //check if the current displayed profile is logged in profile or visitor
+    const visitor = userName === user.username ? false : true
 
-    // eslint-disable-next-line no-unused-vars
-    const [showCoverMenu, setShowCoverMenu] = useState(false)
+    const [photos, setPhotos] = useState({})
 
     // eslint-disable-next-line no-unused-vars
     const [{ loading, error, profile }, dispatch] = useReducer(profileReducer, {
@@ -26,43 +36,61 @@ export default function Profile() {
     })
 
     useEffect(() => {
-        getProfile(userName, user, dispatch, navigate)
+        getProfile(userName, user, dispatch, navigate, user.token, setPhotos)
     }, [userName])
+
+    // console.log('PHOTOS RESOURCES', photos.resources[0].folder)
     return (
         <div>
             <Header page="profile" />
             <div className="profile_top">
                 <div className="profile_container">
-                    <div className="profile_cover">
-                        {profile.cover && (
-                            <img
-                                src={profile.cover}
-                                alt="profile cover"
-                                className="cover"
-                            />
-                        )}
-                        <div className="update_cover_wrapper">
-                            <div
-                                className="open_cover_update"
-                                onClick={() =>
-                                    setShowCoverMenu((prev) => !prev)
-                                }
-                            >
-                                <i className="camera_filled_icon"></i>
-                                Add Cover Photo
+                    <Cover cover={profile.cover} visitor={visitor} />
+                    <ProfilePictureInfos
+                        profile={profile}
+                        visitor={visitor}
+                        photos={photos.resources}
+                    />
+                    <ProfileMenu />
+                </div>
+            </div>
+            <div className="profile_bottom">
+                <div className="profile_container">
+                    <div className="bottom_container">
+                        <PplYouMayKnow />
+                        <div className="profile_grid">
+                            <div className="profile_left">
+                                <Photos photos={photos} />
+                                <Friends friends={profile.friends} />
                             </div>
-                            {showCoverMenu && (
-                                <div className="open_cover_menu">
-                                    <div className="open_cover_menu_item">
-                                        <i className="photo_icon"></i>Select
-                                        Photo
-                                    </div>
-                                    <div className="open_cover_menu_item">
-                                        <i className="photo_icon"></i>Upload
-                                        Photo
-                                    </div>
+                            <div className="profile_right">
+                                {!visitor && (
+                                    <CreatePost
+                                        user={user}
+                                        profile
+                                        setCreatePostVisible={
+                                            setCreatePostVisible
+                                        }
+                                    />
+                                )}
+                                <GridPosts />
+                                <div className="posts">
+                                    {profile.posts && profile.posts.length ? (
+                                        profile.posts.map((post) => (
+                                            <Post
+                                                key={post._id}
+                                                post={post}
+                                                user={user}
+                                                profile
+                                            />
+                                        ))
+                                    ) : (
+                                        <div className="no_posts">
+                                            No posts available
+                                        </div>
+                                    )}
                                 </div>
-                            )}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -46,7 +46,15 @@ function App() {
                         }
                         exact
                     />
-                    <Route path="/profile" element={<Profile />} exact />
+                    <Route
+                        path="/profile"
+                        element={
+                            <Profile
+                                setCreatePostVisible={setCreatePostVisible}
+                            />
+                        }
+                        exact
+                    />
                     <Route
                         path="/profile/:username"
                         element={<Profile />}

@@ -1,6 +1,8 @@
 import './style.css'
 import { useEffect, useRef, useState } from 'react'
 import Picker from 'emoji-picker-react'
+import { handleImage } from '../../functions/handleImage'
+import ErrorHandler from '../errors/ErrorHandler'
 export default function CreateComment({ user }) {
     const [picker, setPicker] = useState(false)
     const [comment, setComment] = useState('')
@@ -21,29 +23,6 @@ export default function CreateComment({ user }) {
         setComment(newText)
         setCursorPosition(start.length + emoji.length)
     }
-
-    const handleImage = (e) => {
-        let file = e.target.files[0]
-        if (
-            file.type !== 'image/jpeg' &&
-            file.type !== 'image/jpeg' &&
-            file.type !== 'image/gif' &&
-            file.type !== 'image/webp'
-        ) {
-            setError(`${file.name} is not supported`)
-            return
-        } else if (file.size > 1024 * 1024 * 5) {
-            setError(`${file.name} is too heavy, max size 5MB allowed`)
-            return
-        }
-        const reader = new FileReader()
-        reader.readAsDataURL(file)
-        reader.onload = (event) => {
-            setCommentImage(event.target.result)
-        }
-    }
-    console.log(commentImage)
-
     return (
         <div className="create_comment_wrap">
             <div className="create_comment">
@@ -59,18 +38,12 @@ export default function CreateComment({ user }) {
                         hidden
                         ref={imgInput}
                         accept="image/jpeg,image/png,image/gif,image/webp"
-                        onChange={handleImage}
+                        onChange={(e) =>
+                            handleImage(e, setCommentImage, setError)
+                        }
                     />
                     {error && (
-                        <div className="postError">
-                            <div className="postError_error">{error}</div>
-                            <button
-                                className="green_btn"
-                                onClick={() => setError('')}
-                            >
-                                Try again
-                            </button>
-                        </div>
+                        <ErrorHandler error={error} setError={setError} />
                     )}
                     <input
                         type="text"

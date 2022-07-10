@@ -22,6 +22,7 @@
 - react-spinners
 - js-cookie
 - emoji-picker-react
+- react-easy-crop
 - protected-routes(first security layer)
 - responsive-web-design (RWD)
 - react-moment
