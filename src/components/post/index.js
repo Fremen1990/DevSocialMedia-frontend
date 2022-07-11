@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import CreateComment from './CreateComment'
 import PostMenu from './PostMenu'
 import { getReacts, reactPost } from '../../functions/post'
+import Comment from './Comment'
 
 export default function Post({ post, user, profile }) {
     const [visible, setVisible] = useState(false)
@@ -15,10 +16,15 @@ export default function Post({ post, user, profile }) {
     const [reacts, setReacts] = useState()
     const [check, setCheck] = useState()
     const [total, setTotal] = useState(0)
+    const [comments, setComments] = useState([])
+    const [count, setCount] = useState(3)
     useEffect(() => {
         getPostReacts()
     }, [post])
 
+    useEffect(() => {
+        setComments(post?.comments)
+    }, [profile])
     const getPostReacts = async () => {
         const res = await getReacts(post._id, user.token)
         setReacts(res.reacts)
@@ -56,11 +62,13 @@ export default function Post({ post, user, profile }) {
                     (reacts[index1].count = --reacts[index1].count),
                 ])
                 setTotal((prev) => --prev)
-                console.log(reacts)
             }
         }
     }
-    console.log(reacts)
+
+    const showMore = () => {
+        setCount((prev) => prev + 3)
+    }
     return (
         <div className="post" style={{ width: `${profile && '100%'}` }}>
             <div className="post_header">
@@ -170,11 +178,12 @@ export default function Post({ post, user, profile }) {
                                 })
                                 .slice(0, 3)
                                 .map(
-                                    (react) =>
+                                    (react, i) =>
                                         react.count > 0 && (
                                             <img
                                                 src={`/reacts/${react.react}.svg`}
-                                                alt=""
+                                                alt="react gif"
+                                                key={i}
                                             />
                                         )
                                 )}
@@ -182,8 +191,10 @@ export default function Post({ post, user, profile }) {
                     <div className="reacts_count_num">{total > 0 && total}</div>
                 </div>
                 <div className="to_right">
-                    <div className="comments_count">13 comments</div>
-                    <div className="share_count">1 share</div>
+                    <div className="comments_count">
+                        {comments.length} comments
+                    </div>
+                    <div className="share_count">0 share</div>
                 </div>
             </div>
             <div className="post_actions">
@@ -254,7 +265,27 @@ export default function Post({ post, user, profile }) {
             </div>
             <div className="comments_wrap">
                 <div className="comments_order"></div>
-                <CreateComment user={user} />
+                <CreateComment
+                    user={user}
+                    postId={post._id}
+                    setComments={setComments}
+                    setCount={setCount}
+                />
+
+                {comments &&
+                    comments
+                        .sort((a, b) => {
+                            return new Date(b.commentAt) - new Date(a.commentAt)
+                        })
+                        .slice(0, count)
+                        .map((comment) => (
+                            <Comment comment={comment} key={comment._id} />
+                        ))}
+                {count < comments.length && (
+                    <div className="view_comments" onClick={() => showMore()}>
+                        Show more comments
+                    </div>
+                )}
             </div>
 
             {showMenu && (

@@ -2,13 +2,20 @@ import './style.css'
 import { useEffect, useRef, useState } from 'react'
 import Picker from 'emoji-picker-react'
 import { handleImage } from '../../functions/handleImage'
+import { comment } from '../../functions/post'
 import ErrorHandler from '../errors/ErrorHandler'
-export default function CreateComment({ user }) {
+import dataURItoBlob from '../../helpers/dataURItoBlob'
+import { uploadImages } from '../../functions/uploadImages'
+import { ClipLoader } from 'react-spinners'
+// eslint-disable-next-line no-unused-vars
+export default function CreateComment({ user, postId, setComments, setCount }) {
     const [picker, setPicker] = useState(false)
-    const [comment, setComment] = useState('')
+    const [text, setText] = useState('')
     const [commentImage, setCommentImage] = useState('')
     const [error, setError] = useState('')
     const [cursorPosition, setCursorPosition] = useState()
+    // eslint-disable-next-line no-unused-vars
+    const [loading, setLoading] = useState(false)
     const textRef = useRef(null)
     const imgInput = useRef(null)
     useEffect(() => {
@@ -17,11 +24,51 @@ export default function CreateComment({ user }) {
     const handleEmoji = (e, { emoji }) => {
         const ref = textRef.current
         ref.focus()
-        const start = comment.substring(0, ref.selectionStart)
-        const end = comment.substring(ref.selectionStart)
+        const start = text.substring(0, ref.selectionStart)
+        const end = text.substring(ref.selectionStart)
         const newText = start + emoji + end
-        setComment(newText)
+        setText(newText)
         setCursorPosition(start.length + emoji.length)
+    }
+
+    // eslint-disable-next-line no-unused-vars
+    const handleComment = async (e) => {
+        if (e.key === 'Enter') {
+            if (commentImage !== '') {
+                setLoading(true)
+                const img = dataURItoBlob(commentImage)
+                const path = `${user.username}/post_images/${postId}`
+                let formData = new FormData()
+                formData.append('path', path)
+                formData.append('file', img)
+                const imgComment = await uploadImages(
+                    formData,
+                    path,
+                    user.token
+                )
+
+                const comments = await comment(
+                    postId,
+                    text,
+                    imgComment[0].url,
+                    user.token
+                )
+                setComments(comments)
+                setCount((prev) => ++prev)
+                setLoading(false)
+                setText('')
+                setCommentImage('')
+            } else {
+                setLoading(true)
+
+                const comments = await comment(postId, text, '', user.token)
+                setComments(comments)
+                setCount((prev) => ++prev)
+                setLoading(false)
+                setText('')
+                setCommentImage('')
+            }
+        }
     }
     return (
         <div className="create_comment_wrap">
@@ -48,10 +95,14 @@ export default function CreateComment({ user }) {
                     <input
                         type="text"
                         ref={textRef}
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
                         placeholder="Write a comment..."
+                        onKeyUp={handleComment}
                     />
+                    <div className="comment_circle">
+                        <ClipLoader size={25} loading={loading} />
+                    </div>
                     <div
                         className="comment_circle_icon hover1"
                         onClick={() => setPicker((prev) => !prev)}
