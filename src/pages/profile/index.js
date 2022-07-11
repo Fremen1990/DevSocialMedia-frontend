@@ -2,7 +2,7 @@ import './style.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { profileReducer } from '../../functions/reducers'
-import { useEffect, useReducer, useState } from 'react'
+import { useEffect, useReducer, useRef, useState } from 'react'
 import { getProfile } from '../../apiCalls'
 import Header from '../../components/header'
 import Cover from './Cover'
@@ -14,6 +14,8 @@ import GridPosts from './GridPosts'
 import Post from '../../components/post'
 import Photos from './Photos'
 import Friends from './Friends'
+import Intro from '../../components/intro'
+import { useMediaQuery } from 'react-responsive'
 
 export default function Profile({ setCreatePostVisible }) {
     const navigate = useNavigate()
@@ -25,7 +27,7 @@ export default function Profile({ setCreatePostVisible }) {
     const userName = username === undefined ? user.username : username
     //check if the current displayed profile is logged in profile or visitor
     const visitor = userName === user.username ? false : true
-
+    const [othername, setOthername] = useState('')
     const [photos, setPhotos] = useState({})
 
     // eslint-disable-next-line no-unused-vars
@@ -39,17 +41,48 @@ export default function Profile({ setCreatePostVisible }) {
         getProfile(userName, user, dispatch, navigate, user.token, setPhotos)
     }, [userName])
 
-    // console.log('PHOTOS RESOURCES', photos.resources[0].folder)
+    useEffect(() => {
+        setOthername(profile?.details?.otherName)
+    }, [profile])
+
+    const profileTop = useRef(null)
+    // eslint-disable-next-line no-unused-vars
+    const [height, setHeight] = useState('')
+    const leftSide = useRef(null)
+    // eslint-disable-next-line no-unused-vars
+    const [leftHeight, setLeftHeight] = useState('')
+    const [scrollHeight, setScrollHeight] = useState('')
+    useEffect(() => {
+        setHeight(profileTop.current.clientHeight + 300)
+        setLeftHeight(leftSide.current.clientHeight)
+        window.addEventListener('scroll', getScroll, { passive: true })
+        return () => {
+            window.addEventListener('scroll', getScroll, { passive: true })
+        }
+    }, [loading, scrollHeight])
+    // eslint-disable-next-line no-unused-vars
+    const check = useMediaQuery({
+        query: '(min-width:901px)',
+    })
+    const getScroll = () => {
+        setScrollHeight(window.pageYOffset)
+    }
+
     return (
         <div>
             <Header page="profile" />
-            <div className="profile_top">
+            <div className="profile_top" ref={profileTop}>
                 <div className="profile_container">
-                    <Cover cover={profile.cover} visitor={visitor} />
+                    <Cover
+                        cover={profile.cover}
+                        visitor={visitor}
+                        photos={photos.resources}
+                    />
                     <ProfilePictureInfos
                         profile={profile}
                         visitor={visitor}
                         photos={photos.resources}
+                        othername={othername}
                     />
                     <ProfileMenu />
                 </div>
@@ -58,8 +91,24 @@ export default function Profile({ setCreatePostVisible }) {
                 <div className="profile_container">
                     <div className="bottom_container">
                         <PplYouMayKnow />
-                        <div className="profile_grid">
-                            <div className="profile_left">
+                        <div
+                            className={`profile_grid ${
+                                check &&
+                                scrollHeight >= height &&
+                                leftHeight > 1000
+                                    ? 'scrollFixed showLess'
+                                    : check &&
+                                      scrollHeight >= height &&
+                                      leftHeight < 1000 &&
+                                      'scrollFixed showMore'
+                            }`}
+                        >
+                            <div className="profile_left" ref={leftSide}>
+                                <Intro
+                                    detailss={profile.details}
+                                    visitor={visitor}
+                                    setOthername={setOthername}
+                                />
                                 <Photos photos={photos} />
                                 <Friends friends={profile.friends} />
                             </div>

@@ -1,5 +1,5 @@
 .home {
-    /*min-height: 100vh;*/
+    min-height: 100vh;
     background: var(--bg-secondary);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -10,12 +10,12 @@
     left: 50%;
     transform: translateX(-50%);
 }
-
 @media (max-width: 1175px) {
     .stories,
     .createPost,
+    .post,
     .send_verification {
-        width: 85%;
+        width: 84%;
     }
     .home_middle {
         margin-left: 5%;
@@ -24,7 +24,6 @@
         width: 18vw;
     }
 }
-
 /*--------------- Responsiveness RWD -------------*/
 @media (max-width: 1175px) {
     .stories,
@@ -74,12 +73,14 @@
     }
     .stories,
     .createPost,
+    .post,
     .send_verification {
         width: 100%;
     }
 }
 @media (max-width: 960px) {
     .createPost,
+    .post,
     .send_verification {
         width: 93%;
     }
@@ -108,11 +109,12 @@
         display: none;
     }
     .createPost,
+    .post,
     .send_verification {
         width: 110%;
     }
     .stories {
-        width: 113%;
+        width: 112%;
     }
     .home_middle {
         margin-left: 9%;
@@ -120,7 +122,7 @@
 }
 @media (max-width: 805px) {
     .stories {
-        grid-template-columns: repeat(6, 13vw);
+        grid-template-columns: repeat(6, 12.7vw);
     }
     .story_profile_name,
     .story_create_text {
@@ -153,6 +155,7 @@
     }
     .stories,
     .createPost,
+    .post,
     .send_verification {
         width: 100%;
     }
@@ -176,11 +179,34 @@
         width: 20px;
     }
 }
-/*--------------- Responsiveness RWD -------------*/
-
+@media (max-width: 400px) {
+    .createPost,
+    .post {
+        margin-top: 1rem;
+    }
+    .home_middle,
+    .createPost,
+    .post {
+        width: 98%;
+        margin: 1rem auto;
+    }
+    .send_verification {
+        width: 98%;
+        margin: 0 auto;
+    }
+    .stories {
+        grid-template-columns: repeat(6, 13vw);
+        padding-left: 10px;
+    }
+    .home_middle {
+        margin: 56px auto;
+    }
+    .createPost_body {
+        padding: 5px 0;
+    }
+}
 /*-----Activate popup----*/
 .popup {
-    /*position: relative;*/
     background: var(--bg-primary);
     box-shadow: 0 1px 2px var(--shadow-1);
     width: 40vw;

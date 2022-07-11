@@ -5,7 +5,7 @@ export default function RightHome({ user }) {
     const color = '#65676b'
     return (
         <div className="right_home">
-            <div className="heading">These are your people!</div>
+            <div className="heading">Sponsored</div>
             <div className="splitter1"></div>
             <div className="contacts_wrap">
                 <div className="contacts_header">

@@ -55,7 +55,6 @@ export default function UpdateProfilePicture({
 
     const updateProfilePicture = async () => {
         setLoading(true)
-        console.log('LOADING STATE', loading)
         try {
             let img = await getCroppedImage()
             let blob = await fetch(img).then((b) => b.blob())
@@ -103,7 +102,7 @@ export default function UpdateProfilePicture({
             }
         } catch (error) {
             setLoading(false)
-            setError(error.response.data.error)
+            setError(error.response.data.message)
         }
     }
 

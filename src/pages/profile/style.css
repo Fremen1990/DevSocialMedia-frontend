@@ -95,7 +95,7 @@
     cursor: pointer;
 }
 .profile_w_bg:hover {
-    filter: brightness(90%);
+    filter: brightness(95%);
 }
 .profile_circle {
     position: absolute;
@@ -125,7 +125,6 @@
 .invert {
     filter: invert(100%);
 }
-
 /*--Menu-------*/
 .profile_menu_wrap {
     position: relative;
@@ -154,8 +153,8 @@
     height: 60px !important;
     width: 65px !important;
     margin: 0 !important;
-    color: var(--green-logo-color) !important;
-    border-bottom: 3px solid var(--green-logo-color);
+    color: var(--blue-color) !important;
+    border-bottom: 3px solid var(--blue-color);
     border-radius: 0 !important;
 }
 .p10_dots {
@@ -234,7 +233,7 @@
     width: 20px;
 }
 .pplumayknow_list .light_blue_btn {
-    color: black;
+    color: var(--green-logo-color);
 }
 .profile_grid {
     position: relative;
@@ -243,8 +242,6 @@
     gap: 10px;
 }
 /*------ppl u may know------*/
-/*--Menu-------*/
-
 .left_header_grid {
     font-size: 22px;
     font-weight: 600;
@@ -397,8 +394,8 @@
     cursor: pointer;
 }
 .selectCoverBox_link:first-of-type {
-    color: var(--blue-color);
-    border-bottom: 3px solid var(--blue-color);
+    color: var(--green-logo-color);
+    border-bottom: 3px solid var(--green-logo-color);
 }
 
 /*-----profile card--------*/

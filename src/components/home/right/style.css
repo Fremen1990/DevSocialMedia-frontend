@@ -36,6 +36,15 @@
     justify-content: center;
     cursor: pointer;
 }
+.contact_circle:nth-child(1) {
+    margin-right: -1px;
+}
+.contact_circle:nth-child(2) {
+    margin-right: 1px;
+}
+.contact_circle:nth-child(3) {
+    margin-top: -1px;
+}
 
 .contacts_list {
     padding: 5px;

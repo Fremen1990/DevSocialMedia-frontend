@@ -18,7 +18,6 @@ export default function ImagePreview({
         //Image load
         let files = Array.from(e.target.files)
         files.forEach((img) => {
-            console.log(img.type)
             if (
                 img.type !== 'image/jpeg' &&
                 img.type !== 'image/png' &&

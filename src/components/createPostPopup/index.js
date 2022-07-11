@@ -46,7 +46,6 @@ export default function CreatePostPopup({ user, setCreatePostVisible }) {
                 return dataURItoBlob(img)
             })
             const path = `${user.username}/post_images`
-            console.log('user', user)
             let formData = new FormData()
             formData.append('path', path)
             postImages.forEach((image) => {
@@ -90,7 +89,6 @@ export default function CreatePostPopup({ user, setCreatePostVisible }) {
             }
         } else {
             setError('Please write something, choose image or background')
-            console.log('No entry')
         }
     }
 

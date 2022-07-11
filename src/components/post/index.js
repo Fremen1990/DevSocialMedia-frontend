@@ -29,7 +29,7 @@ export default function Post({ post, user, profile }) {
                                             : 'her'
                                     } profile picture`}
 
-                                {post.type === 'cover' &&
+                                {post.type === 'coverPicture' &&
                                     `updated ${
                                         post.user.gender === 'male'
                                             ? 'his'
@@ -105,7 +105,9 @@ export default function Post({ post, user, profile }) {
                     />
                 </div>
             ) : (
-                <div className="post_cover_wrap"></div>
+                <div className="post_cover_wrap">
+                    <img src={post.images[0].url} alt="post image" />
+                </div>
             )}
             <div className="post_infos">
                 <div className="reacts_count">
