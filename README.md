@@ -29,6 +29,7 @@
 
 
 ## TODO
+- [ ] Refactor bulky components to as small as possible chunks
 - [ ] Configure Husky pre hooks with eslint prettier and test before commit
 - [ ] Refactor separated functional components as "LOGIN BUTTON" "LOGOUT BUTTON" and LOGO
 - [ ] Prepare README
@@ -38,3 +39,15 @@
 - [ ] Snapshot testing with React-Testing-Library
 - [ ] Testing coverage report
 - [ ] Add Chat messenger with SocketIO
+
+# Profile to be created: 
+- Jakub Król
+- Bartłomiej Borowczyk
+- Elon Musk
+- Bill Gates
+- Michał Taszycki
+- Geralt z Rivii
+- Cirilla
+- Mikasa
+- Son Goku
+- Will Smith

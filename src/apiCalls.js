@@ -23,7 +23,7 @@ export const getProfile = async (
             }
         )
         if (data.ok === false) {
-            navigate('/profileNotFound')
+            navigate('/')
         } else {
             try {
                 const images = await axios.post(

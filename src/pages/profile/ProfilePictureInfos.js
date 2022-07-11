@@ -1,6 +1,8 @@
 import './style.css'
 import { useRef, useState } from 'react'
 import ProfilePicture from '../../components/proilePicture'
+import Friendship from './Friendship'
+import { Link } from 'react-router-dom'
 
 export default function ProfilePictureInfos({
     profile,
@@ -45,12 +47,45 @@ export default function ProfilePictureInfos({
                             {othername && `(${othername})`}
                         </div>
                     </div>
-                    <div className="profile_friend_count"></div>
-                    <div className="profile_friend_images"></div>
+                    <div className="profile_friend_count">
+                        {' '}
+                        {profile?.friends && (
+                            <div className="profile_card_count">
+                                {profile?.friends.length === 0
+                                    ? ''
+                                    : profile?.friends.length === 1
+                                    ? '1 Friend'
+                                    : `${profile?.friends.length} Friends`}
+                            </div>
+                        )}
+                    </div>
+                    <div className="profile_friend_imgs">
+                        {profile?.friends &&
+                            profile.friends.slice(0, 6).map((friend, i) => (
+                                <Link
+                                    to={`/profile/${friend.username}`}
+                                    key={i}
+                                >
+                                    <img
+                                        src={friend.picture}
+                                        alt=""
+                                        style={{
+                                            transform: `translateX(${
+                                                -i * 7
+                                            }px)`,
+                                            zIndex: `${i}`,
+                                        }}
+                                    />
+                                </Link>
+                            ))}
+                    </div>
                 </div>
             </div>
             {visitor ? (
-                ''
+                <Friendship
+                    friendshipp={profile?.friendship}
+                    profileid={profile._id}
+                />
             ) : (
                 <div className="profile_w_right">
                     <div className="green_btn">

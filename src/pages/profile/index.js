@@ -46,10 +46,8 @@ export default function Profile({ setCreatePostVisible }) {
     }, [profile])
 
     const profileTop = useRef(null)
-    // eslint-disable-next-line no-unused-vars
     const [height, setHeight] = useState('')
     const leftSide = useRef(null)
-    // eslint-disable-next-line no-unused-vars
     const [leftHeight, setLeftHeight] = useState('')
     const [scrollHeight, setScrollHeight] = useState('')
     useEffect(() => {
