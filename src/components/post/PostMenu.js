@@ -3,6 +3,7 @@ import MenuItem from './MenuItem'
 import { useRef, useState } from 'react'
 import useOnClickOutside from '../../helpers/clickOutside'
 import { deletePost, savePost } from '../../functions/post'
+import { saveAs } from 'file-saver'
 
 export default function PostMenu({
     postUserId,
@@ -13,7 +14,6 @@ export default function PostMenu({
     postId,
     checkSaved,
     setCheckSaved,
-    // eslint-disable-next-line no-unused-vars
     images,
     postRef,
 }) {
@@ -30,11 +30,11 @@ export default function PostMenu({
             setCheckSaved(true)
         }
     }
-    // const downloadImages = async () => {
-    //     images.map((img) => {
-    //         saveAs(img.url, 'image.jpg')
-    //     })
-    // }
+    const downloadImages = async () => {
+        images.map((img) => {
+            saveAs(img.url, 'image.jpg')
+        })
+    }
     const deleteHandler = async () => {
         const res = await deletePost(postId, token)
         if (res.status === 'ok') {
@@ -69,9 +69,7 @@ export default function PostMenu({
                 />
             )}
             {imagesLength && (
-                <div
-                // onClick={() => downloadImages()}
-                >
+                <div onClick={() => downloadImages()}>
                     <MenuItem icon="download_icon" title="Download" />
                 </div>
             )}
