@@ -87,7 +87,6 @@ export const follow = async (id, token) => {
         console.log(data)
         return 'ok'
     } catch (error) {
-        console.log(error.response.data.message)
         return error.response.data.message
     }
 }
@@ -227,6 +226,23 @@ export const removeFromSearch = async (searchUser, token) => {
             }
         )
         return data
+    } catch (error) {
+        return error.response.data.message
+    }
+}
+
+export const getFriendsPageInfos = async (token) => {
+    try {
+        const { data } = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/getFriendsPageInfos`,
+
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+        return { status: 'ok', data }
     } catch (error) {
         return error.response.data.message
     }

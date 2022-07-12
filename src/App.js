@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 import { useEffect, useReducer, useState } from 'react'
 import { postsReducer } from './functions/reducers'
 import { getAllPosts } from './apiCalls'
+import Friends from './pages/friends'
 
 function App() {
     const [visible, setVisible] = useState(false)
@@ -66,6 +67,29 @@ function App() {
                         path="/profile/:username"
                         element={
                             <Profile
+                                setVisible={setVisible}
+                                getAllPosts={getAllPosts}
+                                dispatch={dispatch}
+                            />
+                        }
+                        exact
+                    />
+                    <Route
+                        path="/friends"
+                        element={
+                            <Friends
+                                setVisible={setVisible}
+                                getAllPosts={getAllPosts}
+                                dispatch={dispatch}
+                            />
+                        }
+                        exact
+                    />
+
+                    <Route
+                        path="/friends/:type"
+                        element={
+                            <Friends
                                 setVisible={setVisible}
                                 getAllPosts={getAllPosts}
                                 dispatch={dispatch}

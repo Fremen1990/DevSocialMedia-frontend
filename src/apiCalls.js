@@ -52,7 +52,6 @@ export const getProfile = async (
 }
 
 export const getAllPosts = async (user, dispatch) => {
-    console.log('USER FROM API CALLS', user.token)
     try {
         dispatch({ type: 'POSTS_REQUEST' })
         const { data } = await axios.get(

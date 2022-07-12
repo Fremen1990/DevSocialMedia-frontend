@@ -57,7 +57,6 @@ export default function Post({ post, user, profile }) {
                     (reacts[index].count = ++reacts[index].count),
                 ])
                 setTotal((prev) => ++prev)
-                console.log(reacts)
             }
             if (index1 !== -1) {
                 setReacts([

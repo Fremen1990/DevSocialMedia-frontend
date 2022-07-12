@@ -13,6 +13,7 @@ import {
     ArrowDown,
     Notifications,
     Home,
+    FriendsActive,
 } from '../../svg'
 import { useSelector } from 'react-redux'
 import SearchMenu from './SearchMenu'
@@ -77,8 +78,17 @@ export default function Header({ page, getAllPosts, dispatch }) {
                         <Home color={color} />
                     )}
                 </Link>
-                <Link to="/" className="middle_icon hover1 ">
-                    <Friends color={color} />
+                <Link
+                    to="/friends"
+                    className={`middle_icon ${
+                        page === 'friends' ? 'active' : 'hover1'
+                    }`}
+                >
+                    {page === 'friends' ? (
+                        <FriendsActive color="green" />
+                    ) : (
+                        <Friends color={color} />
+                    )}{' '}
                 </Link>
                 <Link to="/" className="middle_icon hover1">
                     <Watch color={color} />

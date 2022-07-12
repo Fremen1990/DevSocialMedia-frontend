@@ -58,6 +58,22 @@ a {
     gap: 6px;
     cursor: pointer;
 }
+.red_btn {
+    border: none;
+    outline: none;
+    background: var(--notification-red);
+    padding: 8.5px 12px;
+    border-radius: 7px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+}
 .light_blue_btn {
     border: none;
     outline: none;
@@ -165,3 +181,25 @@ a {
     border-radius: 5px;
 }
 /*--------- Scrollbar --------------*/
+/*---Circles------*/
+.small_circle {
+    position: relative;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 11px;
+    background: var(--bg-third);
+    cursor: pointer;
+}
+/*---Circles------*/
+
+/*----filters---*/
+.filter_blue {
+    filter: invert(39%) sepia(57%) saturate(200%) saturate(200%) saturate(200%)
+        saturate(200%) saturate(200%) saturate(147.75%) hue-rotate(202deg)
+        brightness(97%) contrast(96%);
+}
+/*----filters---*/
