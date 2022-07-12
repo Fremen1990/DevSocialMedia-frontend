@@ -60,6 +60,7 @@ export default function Header({ page, getAllPosts, dispatch }) {
                 <SearchMenu
                     color={color}
                     setShowSearchMenu={setShowSearchMenu}
+                    token={user.token}
                 />
             )}
             <div className="header_middle">

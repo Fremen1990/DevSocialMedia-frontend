@@ -49,3 +49,4 @@
 - Mikasa
 - Son Goku
 - Will Smith
+- Scarlett Johansson
