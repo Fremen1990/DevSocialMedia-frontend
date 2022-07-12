@@ -2,6 +2,8 @@
 
 ## Project currently in progress
 
+### The idea and purpose of this project is to make a project which will be a journey not a goal to achieve,  to expose myself for re-factorization, bug-fixes and place to grow to implement other technologies keeping in mind Redux, TypeScript and NextJS.
+
 ### README plan:
 - Describe idea and what project will do
 - Describe situation where started and what challenges appear
@@ -28,7 +30,6 @@
 - react-moment
 - file-saver
 
-[//]: # (TODO 142. Download post images  )
 
 ## TODO
 - [ ] Refactor bulky components to as small as possible chunks
@@ -42,13 +43,8 @@
 - [ ] Testing coverage report
 - [ ] Add Chat messenger with SocketIO
 
-# Profile to be created: 
-- Jakub Król
-- Bartłomiej Borowczyk
-- Elon Musk
-- Bill Gates
+# Profile to be created:
 - Michał Taszycki
-- Geralt z Rivii
 - Cirilla
 - Mikasa
 - Son Goku
