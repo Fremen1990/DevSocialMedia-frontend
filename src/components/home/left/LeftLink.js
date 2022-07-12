@@ -2,7 +2,7 @@ import './style.css'
 
 export default function LeftLink({ img, text, notification }) {
     return (
-        <div className="left_link hover1">
+        <div className="left_link hover2">
             <img src={`/left/${img}.png`} alt="Left link image" />
             {notification !== undefined ? (
                 <div className="col">

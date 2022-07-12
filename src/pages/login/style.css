@@ -1,18 +1,4 @@
-/*----- login ------*/
-
-.login_1_logo {
-    /*  my own */
-    display: flex;
-    font-size: 40px;
-    color: var(--green-color);
-    font-weight: 900;
-    /*text-shadow: -1px 9px 23px rgba(66, 68, 90, 1);*/
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-    letter-spacing: 1px;
-    white-space: nowrap;
-    padding: 30px 0;
-}
-
+/*-------login-----*/
 .login_wrapper {
     background: var(--bg-secondary);
 }
@@ -75,7 +61,7 @@
 .sign_extra {
     font-size: 15px;
 }
-/*----- login ------*/
+/*-------login-----*/
 
 /*-----Register---------*/
 .register {
@@ -230,7 +216,7 @@
 }
 /*----Footer------*/
 
-/*----date of birth  and gender errors-----*/
+/*----dob and gender errors-----*/
 .reg_grid .input_error {
     width: 300px;
     position: absolute;
@@ -240,11 +226,11 @@
     left: -97%;
     top: 15px !important;
 }
-/*----date of birth and gender errors-----*/
+/*----dob and gender errors-----*/
 
 /*----error and success styles -------*/
 .error_text {
-    color: var(--red-color);
+    color: #b94a48;
 }
 .success_text {
     color: var(--green-color);
@@ -293,7 +279,7 @@
         margin-left: -1.7rem;
     }
     .login_1 span {
-        font-size: 24px;
+        font-size: 28px;
     }
     .login_2_wrap {
         width: 400px;

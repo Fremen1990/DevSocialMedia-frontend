@@ -1,4 +1,10 @@
+import { useDispatch, useSelector } from 'react-redux'
+import Cookies from 'js-cookie'
+
 export default function DisplayAccessibility({ setVisible }) {
+    const dispatch = useDispatch()
+    const { darkTheme } = useSelector((state) => ({ ...state }))
+
     return (
         <div className="absolute_wrap">
             <div className="absolute_wrap_header">
@@ -22,14 +28,38 @@ export default function DisplayAccessibility({ setVisible }) {
                 </span>
             </div>
 
-            <label htmlFor="darkOff" className="hover3">
+            <label
+                htmlFor="darkOff"
+                className="hover3"
+                onClick={() => {
+                    Cookies.set('darkTheme', false)
+                    dispatch({ type: 'LIGHT' })
+                }}
+            >
                 <span>Off</span>
-                <input type="radio" id="darkOff" name="dark" />
+
+                {darkTheme ? (
+                    <input type="radio" id="darkOff" name="dark" />
+                ) : (
+                    <input type="radio" id="darkOff" name="dark" checked />
+                )}
             </label>
 
-            <label htmlFor="darkOn" className="hover3">
+            <label
+                htmlFor="darkOn"
+                className="hover3"
+                onClick={() => {
+                    Cookies.set('darkTheme', true)
+                    dispatch({ type: 'DARK' })
+                }}
+            >
                 <span>On</span>
-                <input type="radio" id="darkOn" name="dark" />
+
+                {darkTheme ? (
+                    <input type="radio" id="darkOn" name="dark" checked />
+                ) : (
+                    <input type="radio" id="darkOn" name="dark" />
+                )}
             </label>
 
             {/*  ------------ Compact mode ----------*/}

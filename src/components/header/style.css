@@ -186,6 +186,7 @@ circle {
 }
 .search_area .search input {
     padding-left: 4px;
+    color: var(--color-primary);
 }
 .search_area .search svg {
     transform: translateY(1px);

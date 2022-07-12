@@ -17,7 +17,7 @@
 - ReactJS
 - Redux (redux, react-redux, redux-devtools-extension)
 - react-router-dom
-- formik
+- formik -> in future change to react-hook-form as it is much better
 - yup
 - react-responsive
 - axios

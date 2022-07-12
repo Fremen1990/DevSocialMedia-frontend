@@ -1,3 +1,4 @@
+import './index.css'
 import { Route, Routes } from 'react-router-dom'
 import Login from './pages/login'
 import Profile from './pages/profile'
@@ -15,7 +16,7 @@ import Friends from './pages/friends'
 
 function App() {
     const [visible, setVisible] = useState(false)
-    const { user } = useSelector((state) => ({ ...state }))
+    const { user, darkTheme } = useSelector((state) => ({ ...state }))
     // eslint-disable-next-line no-unused-vars
     const [{ loading, error, posts }, dispatch] = useReducer(postsReducer, {
         loading: false,
@@ -26,9 +27,8 @@ function App() {
     useEffect(() => {
         getAllPosts(user, dispatch)
     }, [])
-
     return (
-        <>
+        <div className={darkTheme ? 'dark' : ''}>
             {visible && (
                 <CreatePostPopup
                     user={user}
@@ -108,7 +108,7 @@ function App() {
                 </Route>
                 <Route path="/reset" element={<Reset />} exact />
             </Routes>
-        </>
+        </div>
     )
 }
 
