@@ -29,6 +29,7 @@
 - responsive-web-design (RWD)
 - react-moment
 - file-saver
+- react-loading-skeleton 💀
 
 
 ## TODO

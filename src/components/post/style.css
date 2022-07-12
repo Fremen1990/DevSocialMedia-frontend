@@ -586,3 +586,10 @@
         font-size: 12px;
     }
 }
+
+.skeleton_loader_posts {
+    height: 400px;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}

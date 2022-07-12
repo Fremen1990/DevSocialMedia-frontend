@@ -9,6 +9,7 @@ import SendVerification from '../../components/home/sendVerification'
 import Post from '../../components/post'
 // eslint-disable-next-line no-unused-vars
 import { useEffect, useRef, useState } from 'react'
+import { HashLoader } from 'react-spinners'
 
 // eslint-disable-next-line no-unused-vars
 export default function Home({
@@ -36,9 +37,17 @@ export default function Home({
                 {user.verified === false && <SendVerification user={user} />}
                 <CreatePost user={user} setVisible={setVisible} />
 
-                {posts.map((post) => (
-                    <Post key={post._id} post={post} user={user} />
-                ))}
+                {loading ? (
+                    <div className="skeleton_loader_posts">
+                        <HashLoader color="#0d843c" size={150} />
+                    </div>
+                ) : (
+                    <div className="posts">
+                        {posts.map((post) => (
+                            <Post key={post._id} post={post} user={user} />
+                        ))}
+                    </div>
+                )}
             </div>
             <RightHome user={user} />
         </div>

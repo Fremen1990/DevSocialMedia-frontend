@@ -39,9 +39,19 @@ export default function DisplayAccessibility({ setVisible }) {
                 <span>Off</span>
 
                 {darkTheme ? (
-                    <input type="radio" id="darkOff" name="dark" />
+                    <input
+                        type="radio"
+                        id="darkOff"
+                        name="dark"
+                        checked={darkTheme}
+                    />
                 ) : (
-                    <input type="radio" id="darkOff" name="dark" checked />
+                    <input
+                        type="radio"
+                        id="darkOff"
+                        name="dark"
+                        checked={true}
+                    />
                 )}
             </label>
 
@@ -56,7 +66,12 @@ export default function DisplayAccessibility({ setVisible }) {
                 <span>On</span>
 
                 {darkTheme ? (
-                    <input type="radio" id="darkOn" name="dark" checked />
+                    <input
+                        type="radio"
+                        id="darkOn"
+                        name="dark"
+                        checked={darkTheme}
+                    />
                 ) : (
                     <input type="radio" id="darkOn" name="dark" />
                 )}

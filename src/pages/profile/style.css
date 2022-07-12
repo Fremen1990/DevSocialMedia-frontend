@@ -74,6 +74,7 @@
     justify-content: space-between;
     padding: 0 1rem;
     margin-bottom: -2.8rem;
+    z-index: 9;
 }
 .profile_w_left {
     display: flex;
@@ -153,8 +154,8 @@
     height: 60px !important;
     width: 65px !important;
     margin: 0 !important;
-    color: var(--blue-color) !important;
-    border-bottom: 3px solid var(--blue-color);
+    color: var(--green-logo-color) !important;
+    border-bottom: 3px solid var(--green-logo-color);
     border-radius: 0 !important;
 }
 .p10_dots {
@@ -301,7 +302,7 @@
 .profile_header_link {
     font-weight: normal;
     font-size: 16px;
-    color: var(--blue-color);
+    color: var(--green-logo-color);
     cursor: pointer;
     padding: 5px 10px;
 }
@@ -521,4 +522,22 @@
     .friendship {
         transform: translateX(-2rem);
     }
+}
+
+.react-loading-skeleton {
+    --base-color: #646262 !important;
+    --highlight-color: #dde6dd !important;
+}
+
+.skeleton_loader {
+    height: 100px;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+.skeleton_loader_posts {
+    height: 400px;
+    width: 100%;
+    display: grid;
+    place-items: center;
 }
