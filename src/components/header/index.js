@@ -20,8 +20,10 @@ import { useRef, useState } from 'react'
 import AllMenu from './AllMenu'
 import useClickOutside from '../../helpers/clickOutside'
 import UserMenu from './userMenu'
+// import { getAllPosts } from '../../apiCalls'
 
-export default function Header({ page }) {
+// eslint-disable-next-line no-unused-vars
+export default function Header({ page, getAllPosts, dispatch }) {
     const { user } = useSelector((user) => ({ ...user }))
     const color = '#65676b'
 
@@ -66,6 +68,7 @@ export default function Header({ page }) {
                     className={`middle_icon ${
                         page === 'home' ? 'active' : 'hover1'
                     }`}
+                    onClick={() => getAllPosts(user, dispatch)}
                 >
                     {page === 'home' ? (
                         <HomeActive color="green" />

@@ -10,7 +10,13 @@ import PostError from './PostError'
 import dataURItoBlob from '../../helpers/dataURItoBlob'
 import { uploadImages } from '../../functions/uploadImages'
 
-export default function CreatePostPopup({ user, setCreatePostVisible }) {
+export default function CreatePostPopup({
+    user,
+    setVisible,
+    posts,
+    dispatch,
+    profile,
+}) {
     const [text, setText] = useState('')
     const [images, setImages] = useState([])
     const [showPrev, setShowPrev] = useState(false)
@@ -19,7 +25,7 @@ export default function CreatePostPopup({ user, setCreatePostVisible }) {
     const [background, setBackground] = useState('')
     const createPostPopup = useRef(null)
 
-    useClickOutside(createPostPopup, () => setCreatePostVisible(false))
+    useClickOutside(createPostPopup, () => setVisible(false))
 
     const postSubmit = async () => {
         if (background) {
@@ -33,10 +39,14 @@ export default function CreatePostPopup({ user, setCreatePostVisible }) {
                 user.token
             )
             setLoading(false)
-            if (response === 'ok') {
+            if (response.status === 'ok') {
+                dispatch({
+                    type: profile ? 'PROFILE_POSTS' : 'POSTS_SUCCESS',
+                    payload: [response.data, ...posts],
+                })
                 setBackground('')
                 setText('')
-                setCreatePostVisible(false)
+                setVisible(false)
             } else {
                 setError(response)
             }
@@ -62,10 +72,14 @@ export default function CreatePostPopup({ user, setCreatePostVisible }) {
                 user.token
             )
             setLoading(false)
-            if (res === 'ok') {
+            if (res.status === 'ok') {
+                dispatch({
+                    type: profile ? 'PROFILE_POSTS' : 'POSTS_SUCCESS',
+                    payload: [res.data, ...posts],
+                })
                 setText('')
                 setImages('')
-                setCreatePostVisible(false)
+                setVisible(false)
             } else {
                 setError(res)
             }
@@ -80,10 +94,14 @@ export default function CreatePostPopup({ user, setCreatePostVisible }) {
                 user.token
             )
             setLoading(false)
-            if (response === 'ok') {
+            if (response.status === 'ok') {
+                dispatch({
+                    type: profile ? 'PROFILE_POSTS' : 'POSTS_SUCCESS',
+                    payload: [response.data, ...posts],
+                })
                 setBackground('')
                 setText('')
-                setCreatePostVisible(false)
+                setVisible(false)
             } else {
                 setError(response)
             }
@@ -100,7 +118,7 @@ export default function CreatePostPopup({ user, setCreatePostVisible }) {
                 <div className="box_header">
                     <div
                         className="small_circle"
-                        onClick={() => setCreatePostVisible(false)}
+                        onClick={() => setVisible(false)}
                     >
                         <i className="exit_icon"></i>
                     </div>

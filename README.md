@@ -26,7 +26,9 @@
 - protected-routes(first security layer)
 - responsive-web-design (RWD)
 - react-moment
+- file-saver
 
+[//]: # (TODO 142. Download post images  )
 
 ## TODO
 - [ ] Refactor bulky components to as small as possible chunks

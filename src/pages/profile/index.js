@@ -16,9 +16,12 @@ import Photos from './Photos'
 import Friends from './Friends'
 import Intro from '../../components/intro'
 import { useMediaQuery } from 'react-responsive'
+import CreatePostPopup from '../../components/createPostPopup'
 
-export default function Profile({ setCreatePostVisible }) {
+export default function Profile({ getAllPosts }) {
     const navigate = useNavigate()
+    // eslint-disable-next-line no-unused-vars
+    const [visible, setVisible] = useState(false)
     //username from http query
     const { username } = useParams()
     //user from redux global store
@@ -67,8 +70,21 @@ export default function Profile({ setCreatePostVisible }) {
     }
 
     return (
-        <div>
-            <Header page="profile" />
+        <div className="profile">
+            {visible && (
+                <CreatePostPopup
+                    user={user}
+                    setVisible={setVisible}
+                    posts={profile?.posts}
+                    dispatch={dispatch}
+                    profile
+                />
+            )}
+            <Header
+                page="profile"
+                getAllPosts={getAllPosts}
+                dispatch={dispatch}
+            />
             <div className="profile_top" ref={profileTop}>
                 <div className="profile_container">
                     <Cover
@@ -115,9 +131,7 @@ export default function Profile({ setCreatePostVisible }) {
                                     <CreatePost
                                         user={user}
                                         profile
-                                        setCreatePostVisible={
-                                            setCreatePostVisible
-                                        }
+                                        setVisible={setVisible}
                                     />
                                 )}
                                 <GridPosts />

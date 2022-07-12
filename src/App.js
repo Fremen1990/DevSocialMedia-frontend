@@ -13,7 +13,7 @@ import { postsReducer } from './functions/reducers'
 import { getAllPosts } from './apiCalls'
 
 function App() {
-    const [createPostVisible, setCreatePostVisible] = useState(false)
+    const [visible, setVisible] = useState(false)
     const { user } = useSelector((state) => ({ ...state }))
     // eslint-disable-next-line no-unused-vars
     const [{ loading, error, posts }, dispatch] = useReducer(postsReducer, {
@@ -28,10 +28,12 @@ function App() {
 
     return (
         <>
-            {createPostVisible && (
+            {visible && (
                 <CreatePostPopup
                     user={user}
-                    setCreatePostVisible={setCreatePostVisible}
+                    setVisible={setVisible}
+                    posts={posts}
+                    dispatch={dispatch}
                 />
             )}
             <Routes>
@@ -40,8 +42,11 @@ function App() {
                         path="/"
                         element={
                             <Home
-                                setCreatePostVisible={setCreatePostVisible}
+                                setVisible={setVisible}
                                 posts={posts}
+                                loading={loading}
+                                getAllPosts={getAllPosts}
+                                dispatch={dispatch}
                             />
                         }
                         exact
@@ -50,14 +55,22 @@ function App() {
                         path="/profile"
                         element={
                             <Profile
-                                setCreatePostVisible={setCreatePostVisible}
+                                setVisible={setVisible}
+                                getAllPosts={getAllPosts}
+                                dispatch={dispatch}
                             />
                         }
                         exact
                     />
                     <Route
                         path="/profile/:username"
-                        element={<Profile />}
+                        element={
+                            <Profile
+                                setVisible={setVisible}
+                                getAllPosts={getAllPosts}
+                                dispatch={dispatch}
+                            />
+                        }
                         exact
                     />
                     <Route

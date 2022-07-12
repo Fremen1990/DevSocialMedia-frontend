@@ -52,12 +52,14 @@ export const getProfile = async (
 }
 
 export const getAllPosts = async (user, dispatch) => {
+    console.log('USER FROM API CALLS', user.token)
     try {
         dispatch({ type: 'POSTS_REQUEST' })
         const { data } = await axios.get(
             `${process.env.REACT_APP_BACKEND_URL}/getAllPosts`,
+
             {
-                header: {
+                headers: {
                     Authorization: `Bearer ${user.token}`,
                 },
             }
