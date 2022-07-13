@@ -54,6 +54,7 @@ export const getProfile = async (
 export const getAllPosts = async (user, dispatch) => {
     try {
         dispatch({ type: 'POSTS_REQUEST' })
+        // eslint-disable-next-line no-unused-vars
         const { data } = await axios.get(
             `${process.env.REACT_APP_BACKEND_URL}/getAllPosts`,
 

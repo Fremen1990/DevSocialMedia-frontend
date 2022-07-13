@@ -9,6 +9,7 @@ import Activate from './pages/home/activate'
 import Reset from './pages/reset'
 import CreatePostPopup from './components/createPostPopup'
 import { useSelector } from 'react-redux'
+// eslint-disable-next-line no-unused-vars
 import { useEffect, useReducer, useState } from 'react'
 import { postsReducer } from './functions/reducers'
 import { getAllPosts } from './apiCalls'
@@ -24,9 +25,6 @@ function App() {
         error: '',
     })
 
-    useEffect(() => {
-        getAllPosts(user, dispatch)
-    }, [])
     return (
         <div className={darkTheme ? 'dark' : ''}>
             {visible && (
@@ -104,7 +102,11 @@ function App() {
                     />
                 </Route>
                 <Route element={<NotLoggedInRoutes />}>
-                    <Route path="/login" element={<Login />} exact />
+                    <Route
+                        path="/login"
+                        element={<Login dispatch={dispatch} />}
+                        exact
+                    />
                 </Route>
                 <Route path="/reset" element={<Reset />} exact />
             </Routes>

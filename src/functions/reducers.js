@@ -1,4 +1,4 @@
-export function postsReducer(state, action) {
+export function postsReducer(state = [], action) {
     switch (action.type) {
         case 'POSTS_REQUEST':
             return { ...state, loading: true, error: '' }
@@ -20,7 +20,7 @@ export function postsReducer(state, action) {
     }
 }
 
-export function profileReducer(state, action) {
+export function profileReducer(state = {}, action) {
     switch (action.type) {
         case 'PROFILE_REQUEST':
             return { ...state, loading: true, error: '' }
@@ -63,7 +63,7 @@ export function photosReducer(state, action) {
             return state
     }
 }
-export function friendspage(state, action) {
+export function friendspage(state = [], action) {
     switch (action.type) {
         case 'FRIENDS_REQUEST':
             return { ...state, loading: true, error: '' }

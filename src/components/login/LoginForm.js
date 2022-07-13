@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import Cookies from 'js-cookie'
 import DevSocialMediaLogo from '../logo'
+import { getAllPosts } from '../../apiCalls'
 
 const loginInfos = {
     email: '',
@@ -36,9 +37,6 @@ function LoginForm({ setVisible }) {
         password: Yup.string().required('Password is required'),
     })
 
-    //Submit login
-
-    //Submit state
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
@@ -57,7 +55,8 @@ function LoginForm({ setVisible }) {
             dispatch({ type: 'LOGIN', payload: data })
             Cookies.set('user', JSON.stringify(data))
             setLoading(false)
-            navigate('/')
+            await getAllPosts(data, dispatch)
+            navigate('/profile')
         } catch (error) {
             setLoading(false)
             setError(error.response.data.message)
@@ -66,8 +65,6 @@ function LoginForm({ setVisible }) {
     return (
         <div className="login_wrap">
             <div className="login_1">
-                {/*<img src="../../icons/facebook.svg" alt="" />*/}
-                {/*<div className="login_1_logo">DevSocialMedia</div>*/}
                 <DevSocialMediaLogo />
                 <span>Helps you connect and share with the people around.</span>
             </div>
