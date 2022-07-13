@@ -33,10 +33,10 @@
 
 
 ## TODO
-- [ ] Refactor bulky components to as small as possible chunks
-- [ ] Configure Husky pre hooks with eslint prettier and test before commit
-- [ ] Refactor separated functional components as "LOGIN BUTTON" "LOGOUT BUTTON" and LOGO
 - [ ] Prepare README
+- [ ] Refactor bulky components to as small chunks as possible 
+- [ ] Implementation Redux for most state not only main ones
+- [ ] Configure Husky pre hooks with eslint prettier and test before commit
 - [ ] Refactoring CSS to SCSS and minimizing number of styles
 - [ ] Refactoring Frontend to TypeScript
 - [ ] Redux black box testing
