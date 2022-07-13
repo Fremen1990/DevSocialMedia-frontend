@@ -91,6 +91,7 @@ export const cancelRequest = async (id, token) => {
 }
 export const follow = async (id, token) => {
     try {
+        // eslint-disable-next-line no-unused-vars
         const { data } = await axios.put(
             `${process.env.REACT_APP_BACKEND_URL}/follow/${id}`,
             {},
@@ -101,7 +102,6 @@ export const follow = async (id, token) => {
                 },
             }
         )
-        console.log(data)
         return 'ok'
     } catch (error) {
         return error.response.data.message

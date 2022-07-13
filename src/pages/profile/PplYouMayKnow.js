@@ -5,7 +5,7 @@ import AddFriendSmallCard from './AddFriendSmallCard'
 import { getAllUsers } from '../../functions/user'
 import { useEffect, useState } from 'react'
 
-export default function PplYouMayKnow({ user, profile }) {
+export default function PplYouMayKnow({ user }) {
     const [pplUmayKnow, setPplUmayKnow] = useState([])
 
     const GetPplUmayKnow = async () => {
@@ -16,7 +16,6 @@ export default function PplYouMayKnow({ user, profile }) {
     useEffect(() => {
         GetPplUmayKnow()
     }, [])
-    console.log('profile', profile)
     return (
         <div className="pplumayknow">
             <div className="pplumayknow_header">
