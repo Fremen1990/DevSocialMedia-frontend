@@ -7,21 +7,17 @@ import Stories from '../../components/home/stories'
 import CreatePost from '../../components/createPost'
 import SendVerification from '../../components/home/sendVerification'
 import Post from '../../components/post'
-// eslint-disable-next-line no-unused-vars
 import { useEffect, useRef, useState } from 'react'
 import { HashLoader } from 'react-spinners'
 
-// eslint-disable-next-line no-unused-vars
 export default function Home({
     setVisible,
     posts,
-    // eslint-disable-next-line no-unused-vars
     loading,
     getAllPosts,
     dispatch,
 }) {
     const { user } = useSelector((state) => ({ ...state }))
-    // eslint-disable-next-line no-unused-vars
     const [height, setHeight] = useState('')
     const middle = useRef(null)
 

@@ -236,7 +236,7 @@ export default function Profile({ getAllPosts }) {
             <div className="profile_bottom">
                 <div className="profile_container">
                     <div className="bottom_container">
-                        <PplYouMayKnow />
+                        <PplYouMayKnow user={user} profile={profile} />
                         <div
                             className={`profile_grid ${
                                 check &&

@@ -23,6 +23,7 @@ export const createPost = async (
         return error.response.data.message
     }
 }
+
 export const reactPost = async (postId, react, token) => {
     try {
         // eslint-disable-next-line no-unused-vars

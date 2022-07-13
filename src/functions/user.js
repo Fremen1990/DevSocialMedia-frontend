@@ -1,5 +1,22 @@
 import axios from 'axios'
 
+export const getAllUsers = async (token) => {
+    try {
+        const { data } = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/getAllUsers`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+        return data
+    } catch (error) {
+        return error.response.data.message
+    }
+}
+
 export const updateprofilePicture = async (url, token) => {
     try {
         // eslint-disable-next-line no-unused-vars

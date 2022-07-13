@@ -44,10 +44,3 @@
 - [ ] Testing coverage report
 - [ ] Add Chat messenger with SocketIO
 
-# Profile to be created:
-- Michał Taszycki
-- Cirilla
-- Mikasa
-- Son Goku
-- Will Smith
-- Scarlett Johansson
